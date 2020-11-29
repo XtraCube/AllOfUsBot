@@ -1,2 +1,4 @@
 # AllOfUsBot
-Simplified version of All of Us PLugin for Impostor Server
+A simplified version of the All of Us Plugin for Impostor.
+
+
