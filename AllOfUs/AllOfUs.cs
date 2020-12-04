@@ -14,8 +14,6 @@ namespace XtraCube.Plugins.AllofUs
     public class AllOfUsPlugin : PluginBase
     {
         private readonly ILogger<AllOfUsPlugin> _logger;
-        private readonly IEventManager _eventManager;
-        private IDisposable _unregister;
 
         public AllOfUsPlugin(ILogger<AllOfUsPlugin> logger, IEventManager eventManager)
         {
