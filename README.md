@@ -1,5 +1,5 @@
 # AllOfUsBot
-A simplified version of the All of Us Plugin for Impostor.
+A simplified version of the All of Us Plugin for Impostor v1.2.2
 
 # Commands
 This version of the plugin has some useful commands, but it won't contain as much as the official All of Us server plugin
