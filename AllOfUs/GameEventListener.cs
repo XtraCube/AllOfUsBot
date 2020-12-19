@@ -46,8 +46,6 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
         public async void OnPlayerChat(IPlayerChatEvent e)
         {
             string[] args = e.Message.Trim().Split(" ");
-            string name = e.PlayerControl.PlayerInfo.PlayerName;
-            byte color = e.PlayerControl.PlayerInfo.ColorId;
             if (e.Game.GameState == GameStates.NotStarted)
             {
                 switch (args[0])
@@ -174,8 +172,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                         {
                             if (args.Length > 1)
                             {
-                                int limit;
-                                bool tryLimit = int.TryParse(args[1], out limit);
+                                bool tryLimit = int.TryParse(args[1], out int limit);
                                 if (tryLimit)
                                 {
                                     if (limit < 127 && limit > 0)
@@ -216,8 +213,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                         {
                             if (args.Length > 1)
                             {
-                                int limit;
-                                bool tryLimit = int.TryParse(args[1], out limit);
+                                bool tryLimit = int.TryParse(args[1], out int limit);
                                 if (tryLimit)
                                 {
                                     if (limit < 127 && limit > 4)
@@ -252,7 +248,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                     case "/map":
                         if (e.ClientPlayer.IsHost)
                         {
-                            if (args.Length > 1)
+                            if (args.Length > 1) 
                             {
                                 string mapname = args[1];
                                 switch (mapname)
@@ -288,10 +284,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                                 await SendMessage(e.PlayerControl, "/map {map}\nSet the map without making a new lobby! Maps: Skeld, Mira/MiraHQ, Polus");
                             }
                         }
-                        else
-                        {
-                            await SendMessage(e.PlayerControl, "[FF0000FF] You can't use that command!");
-                        }
+                        else await SendMessage(e.PlayerControl, "[FF0000FF] You can't use that command!");
                         break;
                     case "/about":
                         await SendMessage(e.PlayerControl, "All of Us is a 100 Player Mod for Among Us developed by XtraCube and Pure, and is based on a mod by andry08.");

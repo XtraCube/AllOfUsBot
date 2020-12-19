@@ -13,7 +13,7 @@ namespace XtraCube.Plugins.AllofUs
         version: "2.0.0")]
     public class AllOfUsPlugin : PluginBase
     {
-        private readonly ILogger<AllOfUsPlugin> _logger;
+        private readonly ILogger<AllOfUsPlugin> _logger; 
 
         public AllOfUsPlugin(ILogger<AllOfUsPlugin> logger, IEventManager eventManager)
         {
