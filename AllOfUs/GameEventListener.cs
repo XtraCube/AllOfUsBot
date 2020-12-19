@@ -133,7 +133,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                         }
                         else if (args.Length == 1)
                         {
-                            await SendMessage(e.PlayerControl, "/name {{name}}\n Change your name!");
+                            await SendMessage(e.PlayerControl, "/name {name}\n Change your name!");
                         }
                         break;
 
@@ -150,7 +150,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                                         if ((e.Game.Options.MaxPlayers / limit) > 2f)
                                         {
                                             e.Game.Options.NumImpostors = (byte)limit;
-                                            await SendMessage(e.PlayerControl, "Impostor limit has been set to {args[1]}!");
+                                            await SendMessage(e.PlayerControl, $"Impostor limit has been set to {args[1]}!");
                                             await e.Game.SyncSettingsAsync();
                                         }
                                         else
@@ -170,7 +170,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                             }
                             if (args.Length == 1)
                             {
-                                await SendMessage(e.PlayerControl, "/implimit {{amount}}\nSet the maximum impostor count. Max is 63, minimum is 1");
+                                await SendMessage(e.PlayerControl, "/implimit {amount}\nSet the maximum impostor count. Max is 63, minimum is 1");
                             }
                         }
                         else
