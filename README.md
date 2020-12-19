@@ -1,8 +1,8 @@
 # AllOfUsBot
-A simplified version of the All of Us Plugin for Impostor v1.2.2-123
+A simplified version of the All of Us Plugin for Impostor v1.2.2-123. This plugin adds some useful commands(chart below) to the chat system. It is also a replacement for memory editing when using a valid 100 Player Mod(see below)
 
 # 100 Player Capabilities
-The plugin has two commands designed to be used with a valid 100 Player Mod.
+The plugin has two commands designed to be used with a valid 100 Player Mod, `/playerlimit` and `/implimit`.
 Currently, these are the supported mods:
 - All Of Us Mod: https://discord.gg/hMHrKGAtKq
 - Crowded Mod: https://github.com/CrowdedMods/CrowdedMod
