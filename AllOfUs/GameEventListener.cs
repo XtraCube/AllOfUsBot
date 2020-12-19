@@ -5,6 +5,7 @@ using Impostor.Api.Innersloth;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using XtraCube.Plugins.AllofUs;
+using System.Collections.Generic;
 
 namespace XtraCube.Plugins.AllOfUs.Handlers
 {
@@ -45,7 +46,22 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
         [EventListener]
         public async void OnPlayerChat(IPlayerChatEvent e)
         {
-            string[] args = e.Message.Trim().Split(" ");
+            string[] args = e.Message.Trim().ToLower().Split(" ");
+            string name = e.PlayerControl.PlayerInfo.PlayerName;
+            byte color = e.PlayerControl.PlayerInfo.ColorId;
+            Dictionary<string, int> Colors = new Dictionary<string, int>();
+            Colors.Add("red", 0);
+            Colors.Add("blue", 1);
+            Colors.Add("green", 2);
+            Colors.Add("pink", 3);
+            Colors.Add("orange", 4);
+            Colors.Add("yellow", 5);
+            Colors.Add("black", 6);
+            Colors.Add("white", 7);
+            Colors.Add("purple", 8);
+            Colors.Add("brown", 9);
+            Colors.Add("cyan", 10);
+            Colors.Add("lime", 11);
             if (e.Game.GameState == GameStates.NotStarted)
             {
                 switch (args[0])
@@ -65,65 +81,19 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                     case "/color":
                         if (args.Length > 1)
                         {
-                            switch (args[1])
+                            if (Colors.ContainsKey(args[1]))
                             {
-                                case "red":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)0);
-                                    break;
-
-                                case "blue":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)1);
-                                    break;
-                                case "green":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)2);
-                                    break;
-                                case "pink":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)3);
-                                    break;
-                                case "orange":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)4);
-                                    break;
-
-                                case "yellow":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)5);
-                                    break;
-                                case "black":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)6);
-                                    break;
-                                case "white":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)7);
-                                    break;
-                                case "purple":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)8);
-                                    break;
-                                case "brown":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)9);
-                                    break;
-                                case "cyan":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)10);
-                                    break;
-                                case "lime":
-                                    await SendMessage(e.PlayerControl, "Color changed successfuly!");
-                                    await e.PlayerControl.SetColorAsync((byte)11);
-                                    break;
-                                default:
-                                    await SendMessage(e.PlayerControl, "[FF0000FF]Invaid color!");
-                                    await SendMessage(e.PlayerControl, "Available colors: Red, Blue, Green, Pink, Orange, Yellow, Black, White, Purple, Brown, Cyan, Lime");
-                                    break;
+                                await SendMessage(e.PlayerControl, "Color changed successfuly!");
+                                await e.PlayerControl.SetColorAsync((byte)Colors[args[1]]);
+                                break;
                             }
-
-                        }
+                            else
+                            {
+                                await SendMessage(e.PlayerControl, "[FF0000FF]Invalid color!");
+                                await SendMessage(e.PlayerControl, "Available colors: Red, Blue, Green, Pink, Orange, Yellow, Black, White, Purple, Brown, Cyan, Lime");
+                                break;
+                            }
+                            }
                         else if (args.Length == 1)
                         {
                             await SendMessage(e.PlayerControl, "/color {color}\n Change your color!");
