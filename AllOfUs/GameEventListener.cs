@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using XtraCube.Plugins.AllofUs;
 using System.Collections.Generic;
+using System;
 
 namespace XtraCube.Plugins.AllOfUs.Handlers
 {
@@ -48,6 +49,7 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
         {
             string[] args = e.Message.Trim().ToLower().Split(" ");
             string name = e.PlayerControl.PlayerInfo.PlayerName;
+            char[] alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
             byte color = e.PlayerControl.PlayerInfo.ColorId;
             Dictionary<string, int> Colors = new Dictionary<string, int>();
             Colors.Add("red", 0);
@@ -122,8 +124,25 @@ namespace XtraCube.Plugins.AllOfUs.Handlers
                                 }
                                 if (!nameUsed)
                                 {
-                                    await SendMessage(e.PlayerControl, "Name changed successfully!");
-                                    await e.PlayerControl.SetNameAsync($"{args[1]}");
+                                    char[] requestedName = args[1].ToCharArray();
+                                    bool nameInvalid = false;
+                                    foreach (char letter in requestedName)
+                                    {
+                                        bool invalidCharExists = !(Array.Exists(alpha, character => character == letter));
+                                        if (invalidCharExists)
+                                        {
+                                            nameInvalid = true;
+                                        }
+                                    }
+                                    if (!nameInvalid)
+                                    {
+                                        await SendMessage(e.PlayerControl, "Name changed successfully!");
+                                        await e.PlayerControl.SetNameAsync($"{args[1]}");
+                                    }
+                                    else if (nameInvalid)
+                                    {
+                                        await SendMessage(e.PlayerControl, "Name contains characters that are not in the standard alphabet.");
+                                    }
                                 }
                             }
                             else
