@@ -4,7 +4,7 @@ A simplified version of the All of Us Plugin for Impostor v1.2.2-123. This plugi
 # 100 Player Capabilities
 The plugin has two commands designed to be used with a valid 100 Player Mod, `/playerlimit` and `/implimit`.
 Currently, these are the supported mods:
-- All Of Us Mod: https://discord.gg/hMHrKGAtKq
+- All Of Us Mod: https://discord.gg/rB3zg4KZpQ
 - Crowded Mod: https://github.com/CrowdedMods/CrowdedMod
 
 # Commands
