@@ -1,3 +1,6 @@
+# DISCONTINUED
+## AllOfUsBot has been discontinued due to its main functionality now being available through the mods it was designed for
+
 # AllOfUsBot
 A simplified version of the All of Us Plugin for Impostor v1.2.2-123. This plugin adds some useful commands(chart below) to the chat system. It is also a replacement for memory editing when using a supported 100 Player Mod(see below)
 
